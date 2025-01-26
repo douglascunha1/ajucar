@@ -3,13 +3,13 @@ version: '3.8'
 services:
   mysql:
     image: mysql:8.0
-    container_name: ajucar
+    container_name: mysql_database
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: senharootforte
+      MYSQL_ROOT_PASSWORD: rootpassword
       MYSQL_DATABASE: ajucar
-      MYSQL_USER: root
-      MYSQL_PASSWORD: senhaforte
+      MYSQL_USER: myuser
+      MYSQL_PASSWORD: mypassword
     ports:
       - "3306:3306"
     volumes:
