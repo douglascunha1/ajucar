@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: mysql_database
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: senharootforte
+      MYSQL_DATABASE: ajucar
+      MYSQL_USER: root
+      MYSQL_PASSWORD: senhaforte
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - mysql_config:/etc/mysql/conf.d
+    networks:
+      - mysql_network
+    command:
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_unicode_ci
+      - --default-authentication-plugin=mysql_native_password
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p$$MYSQL_ROOT_PASSWORD"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  mysql_data:
+    driver: local
+  mysql_config:
+    driver: local
+
+networks:
+  mysql_network:
+    driver: bridge
