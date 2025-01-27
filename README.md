@@ -19,6 +19,30 @@ O objetivo deste desafio é desenvolver um sistema simples para gerenciar veícu
 
 Para configurar o ambiente localmente é necessário ter o Docker e o Docker Compose instalados. Em seguida, basta executar o comando `docker-compose up -d --build ou docker compose up -d --build` na raiz do projeto para subir o banco de dados MySQL e rodar o script para criação do banco e das tabelas, além da carga inicial de dados.
 
+Para acessar o container do mysql, basta executar o comando abaixo:
+    
+```bash
+docker exec -it mysql_database bash
+
+# Acessar o MySQL
+mysql -umyuser -pmypassword
+
+# Acessar o banco de dados
+use ajucar;
+
+# Listar as tabelas
+show tables;
+
+# Listar os dados da tabela veiculo
+select * from veiculo;
+
+# Sair do MySQL
+exit
+
+# Sair do container
+exit
+```
+
 Para baixar e configurar o ambiente do frontend, [clique aqui.](https://github.com/douglascunha1/ajucar-ui)
 
 ## Executando o projeto
